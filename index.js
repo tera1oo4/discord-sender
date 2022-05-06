@@ -7,7 +7,9 @@ const commands = {
     umee: [],
     cosmos: [],
     juno: [],
-    osmo: []
+    osmo: [],
+    terra: [],
+    luna: []
 }
 
 wallets.slice(0, accounts.length).forEach((item, index) => {
@@ -17,11 +19,16 @@ wallets.slice(0, accounts.length).forEach((item, index) => {
     const cosmosCommand = MakeCommands(account.discord_proxy, account.discord_token, item.cosmos)
     const junoCommand = MakeCommands(account.discord_proxy, account.discord_token, item.juno)
     const osmoCommand = MakeCommands(account.discord_proxy, account.discord_token, item.osmo)
+    const terraCommand = MakeCommands(account.discord_proxy, account.discord_token, item.terra)
+    const lunaCommand = MakeCommands(account.discord_proxy, account.discord_token, item.luna)
+
 
     commands.umee.push(umeeCommand)
     commands.cosmos.push(cosmosCommand)
     commands.juno.push(junoCommand)
     commands.osmo.push(osmoCommand)
+    commands.terra.push(terraCommand)
+    commands.luna.push(lunaCommand)
 })
 
 function MakeCommands (proxy, token, wallet) {
@@ -46,6 +53,12 @@ function SendRequests () {
     sleep(60 * 1000)
 
     makeRequestByNetwork('juno')
+    sleep(60 * 1000)
+    
+    makeRequestByNetwork('terra')
+    sleep(60 * 1000)
+
+    makeRequestByNetwork('luna')
     sleep(60 * 1000)
 
     makeRequestByNetwork('osmo')
